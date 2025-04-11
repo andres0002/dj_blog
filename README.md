@@ -1,5 +1,4 @@
-
-# Proyecto -> Portafolio.
+# Proyecto -> Blog.
 # Config .env
 ### dev
 SECRET_KEY_DEV = secret_key
