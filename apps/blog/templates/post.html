@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.titlePost }}
+{% endblock title %}
+
+{% block image %}
+    {{ post.imagePost }}
+{% endblock image %}
+
+{% block main_title %}
+    <h1>{{ post.titlePost }}</h1>
+    <p>{{ post.descriptionPost }}</p>
+{% endblock main_title %}
+
+{% block search_bar %}
+{% endblock search_bar %}
+
+{% block content %}
+    {{ post.contentsPost | safe }}
+{% endblock content %}
