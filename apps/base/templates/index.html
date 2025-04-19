@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}Blog{% endblock title %}</title>
+    <title>{% block title %}Blog W.A.R.J.{% endblock title %}</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <!-- Custom fonts for this template -->
@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'blog:index' %}">Blog</a>
+            <a class="navbar-brand" href="{% url 'index_func' %}">Blog</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,19 +35,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
+                        <a class="nav-link" href="{% url 'index_func' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:general' %}">Generals</a>
+                        <a class="nav-link" href="{% url 'blog:general_func' %}">Generals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:programation' %}">Programation</a>
+                        <a class="nav-link" href="{% url 'blog:programation_func' %}">Programation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:videogames' %}">VideoGames</a>
+                        <a class="nav-link" href="{% url 'blog:videogames_func' %}">VideoGames</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:tecnology' %}">tecnology</a>
+                        <a class="nav-link" href="{% url 'blog:tecnology_func' %}">tecnology</a>
                     </li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h2>{% block main_title %}Blog{% endblock main_title %}</h2>
+                        <h2>{% block main_title %}Blog W.A.R.J.{% endblock main_title %}</h2>
                     </div>
                 </div>
             </div>
@@ -95,51 +95,50 @@
                 {% if posts %}
                 {% for post in posts %}
                 <div class="post-preview">
-                    <a href="{% url 'blog:detailpost' post.slugPost %}">
+                    <a href="{% url 'blog:detail_post_func' post.slug_post %}">
                         <h2 class="post-title">
-                            {{ post.titlePost }}
+                            {{ post.title_post }}
                         </h2>
                         <h3 class="post-subtitle">
-                            {{ post.descriptionPost }}
+                            {{ post.description_post }}
                         </h3>
                     </a>
                     <p class="post-meta">
                         Posted by
-                        <strong>{{ post.authorPost }}</strong> the
-                        {{ post.createDatePost }}
+                        <strong>{{ post.author_post }}</strong> the
+                        {{ post.create_date_post }}
                     </p>
                 </div>
                 <hr>
                 {% endfor %}
                 {% else %}
-                <h1 class="text-center">No existen post registrados!</h1>
+                <h1 class="text-center">No existen posts registrados!</h1>
                 {% endif %}
                 {% endblock content %}
             </div>
         </div>
     </div>
     <!--Paginator-->
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 float-left">
-                {% if posts.has_previous %}
-                <div class="clearfix">
-                    <a href="?page={{ posts.previous_page_number}}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
-                        class="btn btn-primary float-left">Previous</a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6  float-right">
-                {% if posts.has_next %}
-                <div class="clearfix">
-                    <a href="?page={{ posts.next_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
-                        class="btn btn-primary float-right">Following</a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
+    <div class="row justify-content-between align-items-center mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+        {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
+            class="btn btn-primary">Previous</a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        
+        {% if posts.has_previous or posts.has_next %}
+        <span>Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+        {% else %}
+        <span></span>
+        {% endif %}
+    
+        {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
+            class="btn btn-primary">Following</a>
+        {% else %}
+        <span></span>
+        {% endif %}
     </div>
     <!--endPaginator-->
     <hr>
@@ -174,7 +173,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2021</p>
+                    <p class="copyright text-muted">Copyright &copy; W.A.R.J. 2021</p>
                 </div>
             </div>
         </div>

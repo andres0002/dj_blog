@@ -13,11 +13,11 @@ class CategoryResource(resources.ModelResource):
         model = Category
 
 class CategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    search_fields = ['nameCategory']
-    readonly_fields = ('createDateCategory', 'updateDateCategory')
-    list_display = ('nameCategory', 'conditionCategory', 'createDateCategory', 'updateDateCategory')
-    list_filter = ('conditionCategory', 'createDateCategory', 'updateDateCategory')
-    ordering = ['nameCategory']
+    search_fields = ['name_category']
+    readonly_fields = ('create_date_category', 'update_date_category')
+    list_display = ('name_category', 'condition_category', 'create_date_category', 'update_date_category')
+    list_filter = ('condition_category', 'create_date_category', 'update_date_category')
+    ordering = ['name_category']
     resource_class = CategoryResource
 
 class AuthorResource(resources.ModelResource):
@@ -25,11 +25,11 @@ class AuthorResource(resources.ModelResource):
         model = Author
 
 class AuthorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    search_fields = ['nameAuthor', 'lastNameAuthor', 'emailAuthor']
-    readonly_fields = ('createDateAuthor', 'updateDateAuthor')
-    list_display = ('nameAuthor', 'lastNameAuthor', 'facebookAuthor', 'twitterAuthor', 'instagram', 'webAuthor', 'emailAuthor', 'conditionAuthor', 'createDateAuthor', 'updateDateAuthor')
-    list_filter = ('conditionAuthor', 'createDateAuthor', 'updateDateAuthor')
-    ordering = ['nameAuthor']
+    search_fields = ['name_author', 'lastname_author', 'email_author']
+    readonly_fields = ('create_date_author', 'update_date_author')
+    list_display = ('name_author', 'lastname_author', 'facebook_author', 'twitter_author', 'instagram_author', 'web_author', 'email_author', 'condition_author', 'create_date_author', 'update_date_author')
+    list_filter = ('condition_author', 'create_date_author', 'update_date_author')
+    ordering = ['name_author']
     resource_class = AuthorResource
 
 class PostResource(resources.ModelResource):
@@ -37,11 +37,11 @@ class PostResource(resources.ModelResource):
         model = Post
 
 class PostAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    search_fields = ['titlePost', 'slugPost', 'descriptionPost', 'authorPost', 'categoryPost', 'createDatePost', 'updateDatePost']
-    readonly_fields = ('createDatePost', 'updateDatePost')
-    list_display = ('titlePost', 'slugPost', 'descriptionPost', 'authorPost', 'categoryPost', 'conditionPost', 'createDatePost', 'updateDatePost')
-    list_filter = ('authorPost', 'categoryPost', 'conditionPost', 'createDatePost', 'updateDatePost')
-    ordering = ['titlePost']
+    search_fields = ['title_post', 'slug_post', 'description_post', 'author_post', 'category_post', 'create_date_post', 'update_date_post']
+    readonly_fields = ('create_date_post', 'update_date_post')
+    list_display = ('title_post', 'slug_post', 'description_post', 'author_post', 'category_post', 'condition_post', 'create_date_post', 'update_date_post')
+    list_filter = ('author_post', 'category_post', 'condition_post', 'create_date_post', 'update_date_post')
+    ordering = ['title_post']
     resource_class = PostResource
 
 admin.site.register(Category, CategoryAdmin)

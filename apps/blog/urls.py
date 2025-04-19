@@ -2,13 +2,12 @@
 from django.urls import path
 # third
 # own
-from apps.blog.views import home, generals, programation, video_games, tecnology, detail_post
+from apps.blog.views import generals_view, programation_view, video_games_view, tecnology_view, detail_post_view
 
 urlpatterns = [
-    path('', home, name='index'),
-    path('general/', generals, name='general'),
-    path('programation/', programation, name='programation'),
-    path('videogames/', video_games, name='videogames'),
-    path('tecnology', tecnology, name='tecnology'),
-    path('<slug:slug>', detail_post, name='detailpost'),
+    path('general/', generals_view, name='general_func'),
+    path('programation/', programation_view, name='programation_func'),
+    path('videogames/', video_games_view, name='videogames_func'),
+    path('tecnology/', tecnology_view, name='tecnology_func'),
+    path('<slug:slug>', detail_post_view, name='detail_post_func'),
 ]

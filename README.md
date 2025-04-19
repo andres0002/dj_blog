@@ -83,8 +83,8 @@ PORT_PRD = port_db
 ## 12. Ejecutar el proyecto.
 ### -> py manage.py runserver
 ## 13. Cargar data en el admin de django.
-### -> Crear data en la table categorias (general, programation, tecnologies and videogames).
-### -> Crear data en la table autores.
-### -> Crear data en la table posts.
+### -> Cargar data en la table categorias -> import (categories.json).
+### -> Cargar data en la table autores -> import (authors.json).
+### -> Cargar data en la table posts -> import (posts.json).
 ## 14. Desativar el venv.
 ### -> deactivate
