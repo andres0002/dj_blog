@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index_func' %}">Blog</a>
+            <a class="navbar-brand" href="{% url 'blog:index' %}">Blog</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,19 +35,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index_func' %}">Home</a>
+                        <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:general_func' %}">Generals</a>
+                        <a class="nav-link" href="{% url 'blog:general' %}">Generals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:programation_func' %}">Programation</a>
+                        <a class="nav-link" href="{% url 'blog:programation' %}">Programation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:videogames_func' %}">VideoGames</a>
+                        <a class="nav-link" href="{% url 'blog:videogames' %}">VideoGames</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:tecnology_func' %}">tecnology</a>
+                        <a class="nav-link" href="{% url 'blog:tecnology' %}">tecnology</a>
                     </li>
                 </ul>
             </div>
@@ -95,7 +95,7 @@
                 {% if posts %}
                 {% for post in posts %}
                 <div class="post-preview">
-                    <a href="{% url 'blog:detail_post_func' post.slug_post %}">
+                    <a href="{% url 'blog:detail_post' post.slug_post %}">
                         <h2 class="post-title">
                             {{ post.title_post }}
                         </h2>
@@ -118,29 +118,34 @@
             </div>
         </div>
     </div>
-    <!--Paginator-->
-    <div class="row justify-content-between align-items-center mb-3" style="display: flex; justify-content: space-between; align-items: center;">
-        {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
-            class="btn btn-primary">Previous</a>
-        {% else %}
-        <span></span>
-        {% endif %}
+    <!-- Paginator -->
+    <div class="container">
+        <div class="row justify-content-between align-items-center mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+            {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                class="btn btn-primary">Previous</a>
+            {% elif posts and not posts.has_previous %}
+            <a class="btn btn-primary a-disabled">Previous</a>
+            {% else %}
+            <span></span>
+            {% endif %}
+            
+            {% if posts.has_previous or posts.has_next %}
+            <span>Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+            {% else %}
+            <span></span>
+            {% endif %}
         
-        {% if posts.has_previous or posts.has_next %}
-        <span>Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
-        {% else %}
-        <span></span>
-        {% endif %}
-    
-        {% if posts.has_next %}
-        <a href="?page={{ posts.next_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}"
-            class="btn btn-primary">Following</a>
-        {% else %}
-        <span></span>
-        {% endif %}
+            {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                class="btn btn-primary">Following</a>
+            {% elif posts and not posts.has_next %}
+            <a class="btn btn-primary a-disabled">Following</a>
+            {% else %}
+            <span></span>
+            {% endif %}
+        </div>
     </div>
-    <!--endPaginator-->
     <hr>
     <!-- Footer -->
     <footer>

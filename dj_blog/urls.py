@@ -19,10 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 # third
 # own
-from apps.base.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name='index_func'),
-    path('blog/', include(('apps.blog.urls', 'blog')))
+    path('', include(('apps.blog.urls', 'blog')))
 ]
